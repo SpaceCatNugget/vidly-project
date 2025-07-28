@@ -14,6 +14,8 @@ module.exports = function () {
 
   winston.add(new winston.transports.File({ filename: 'logfile.log' }));
 
+  console.log('MongoDB URI being used by Winston:', config.get('db'));
+  
   winston.add(new winston.transports.MongoDB({
     db: config.get('db'),
     level: 'error'
