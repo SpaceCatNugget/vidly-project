@@ -1,3 +1,4 @@
 {
-   
+   "jwtPrivateKey": "dev-secret-key",
+    "db": "mongodb://localhost/vidly-project"
 }
