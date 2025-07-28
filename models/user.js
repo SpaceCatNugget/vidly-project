@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.generateAuthToken = function() { 
   console.log("Signing with jwtPrivateKey:", config.get('jwtPrivateKey'));
-  
+
   const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'));
   return token;
 }
@@ -52,7 +52,8 @@ function validateUser(user) {
   const schema = Joi.object({
     name: Joi.string().min(5).max(50).required(),
     email: Joi.string().min(5).max(255).required().email(),
-    password: passwordComplexity(complexityOptions, label).required()
+    password: passwordComplexity(complexityOptions, label).required(),
+    isAdmin: Joi.boolean()
   });
 
   return schema.validate(user);
